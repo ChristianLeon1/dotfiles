@@ -28,8 +28,8 @@ echo "Instalando dependencias..."
 sudo dnf install -y --allowerasing --skip-broken git stow wget curl gcc gcc-c++ make cmake cargo rust \
                     python3-pip python3-devel qt6-qtbase-devel python3-gobject \
                     nodejs npm ripgrep fd-find wl-clipboard unzip \
-                    python3-neovim texlive-scheme-full texlab latexmk zathura zathura-pdf-mupdf \
-                    hyprland hypridle hyprlock dunst fastfetch kitty neovim python3-pywal yazi zsh rofi-wayland \
+                    python3-neovim texlive-scheme-full latexmk zathura zathura-pdf-mupdf \
+                    hyprland hypridle hyprlock dunst fastfetch kitty neovim yazi zsh rofi-wayland \
                     gtk3-devel gtk-layer-shell-devel pango-devel gdk-pixbuf2-devel cairo-devel glib2-devel \
                     python3 bluez flatpak \
                     grim slurp light pamixer ydotool \  
@@ -38,6 +38,8 @@ sudo dnf install -y --allowerasing --skip-broken git stow wget curl gcc gcc-c++ 
 sudo systemctl enable --now power-profiles-daemon.service
 sudo systemctl enable --now bluetooth.service
 sudo systemctl enable sddm.service
+
+sudo pip3 install pywal
 
 # ---------------------------- Configuración de eww ---------------------------------------
 
