@@ -27,15 +27,7 @@ sudo dnf copr enable -y < /dev/null varlad/yazi
 
 
 echo "Instalando dependencias..."
-sudo dnf install -y --allowerasing --skip-broken --skip-unavailable git stow wget curl gcc gcc-c++ make cmake cargo rust \
-                    python3-pip python3-devel qt6-qtbase-devel python3-gobject \
-                    nodejs npm ripgrep fd-find wl-clipboard unzip \
-                    python3-neovim texlive-scheme-full latexmk zathura zathura-pdf-mupdf \
-                    hyprland hypridle hyprlock dunst fastfetch kitty neovim yazi zsh rofi-wayland \
-                    gtk3-devel gtk-layer-shell-devel pango-devel gdk-pixbuf2-devel cairo-devel glib2-devel \
-                    python3 bluez flatpak \
-                    grim slurp light pamixer ydotool \  
-                    sddm qt6-qtsvg qt6-qtvirtualkeyboard qt6-qtmultimedia 
+sudo dnf install -y --allowerasing --skip-broken --skip-unavailable git stow wget curl gcc gcc-c++ make cmake cargo rust python3-pip python3-devel qt6-qtbase-devel python3-gobject nodejs npm ripgrep fd-find wl-clipboard unzip python3-neovim texlive-scheme-full latexmk zathura zathura-pdf-mupdf hyprland hypridle hyprlock dunst fastfetch kitty neovim yazi zsh rofi-wayland gtk3-devel gtk-layer-shell-devel pango-devel gdk-pixbuf2-devel cairo-devel glib2-devel python3 bluez flatpak grim slurp light pamixer ydotool sddm qt6-qtsvg qt6-qtvirtualkeyboard qt6-qtmultimedia 
 
 sudo systemctl enable --now power-profiles-daemon.service
 sudo systemctl enable --now bluetooth.service
