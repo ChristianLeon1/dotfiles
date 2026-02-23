@@ -1,0 +1,116 @@
+/* 2. EL CONTENEDOR MAESTRO */
+.sidebar-container {
+    background-color: rgba($background, 0.4);
+    border-right: 2px solid $color8;
+    padding: 20px;
+    color: $foreground;
+    border-radius: 15px 0px 0px 15px;
+
+    .time-label {
+        font-size: 42px;
+        font-weight: 800;
+        color: $foreground;
+        margin-top: 5px;
+    }
+    .date-label {
+        font-size: 14px;
+        color: $color6;
+        font-weight: 600;
+        font-weight: bold;
+    }
+    .kernel-label {
+        color: mix($color7, $background, 80%);
+        font-size: 11px;
+        margin-bottom: 20px;
+        font-weight: bold;
+        opacity: 0.8;
+    }
+    .section {
+        margin-top: 20px;
+        border-top: 1px dashed rgba($color8, 0.4);
+        padding-top: 15px;
+    }
+    .section-title {
+        font-weight: bold;
+        color: $color6;
+        margin-bottom: 12px;
+        font-size: 13px;
+        text-shadow: 2px 2px 0px rgba(0, 0, 0, 1);
+    }
+    .sub-text {
+        font-size: 10px;
+        color: $color7;
+        margin-top: 5px;
+        font-weight: 600;
+    }
+    .core-row { margin-bottom: 8px; }
+
+    .core-box {
+        background-color: rgba($background, 0.9);
+        border: 1px solid rgba($color8, 0.3);
+        border-radius: 4px;
+        padding: 8px;
+        transition: 200ms;
+
+        &:hover {
+            border-color: $color2;
+        }
+    }
+    .core-label {
+        font-size: 9px;
+        font-weight: 900;
+        color: $color6;
+    }
+
+    .core-perc {
+        font-size: 9px;
+        color: $foreground;
+    }
+
+    .cpu-graph {
+        color: $color2;
+        background-color: transparent;
+        margin-top: 5px;
+    }
+    progress {
+        background-color: rgba($background, 0.4);
+        border-radius: 4px;
+        min-height: 8px;
+        min-width: 10px;
+        border: 1px solid rgba($foreground, 0.1);
+
+        trough highlight {
+            border-radius: 4px;
+        }
+    }
+    .ram-bar highlight {
+        background-color: $color4;
+        box-shadow: 0 0 5px rgba($color4, 0.5);
+    }
+    .disk-bar highlight {
+        background-color: $color5;
+        box-shadow: 0 0 5px rgba($color5, 0.5);
+    }
+
+    .gpu-label {
+        font-size: 12px;
+        font-weight: 900;
+        color: $color1; /* Color de alerta (Rojo/Naranja) */
+        margin-bottom: 4px;
+    }
+    .gpu-graph {
+        color: $color1; 
+        margin-top: 8px;
+        margin-bottom: 5px;
+    }
+    .gpu-ram-bar highlight {
+        background-color: $color1;
+        box-shadow: 0 0 6px rgba($color1, 0.6); 
+    }
+    .gpu-stats-text {
+        font-size: 10px;
+        color: mix($foreground, $background, 70%);
+        font-weight: 700;
+    }
+
+}

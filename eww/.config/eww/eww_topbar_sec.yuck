@@ -1,0 +1,58 @@
+;; ============================================================
+;;                CONFIGURACIÓN SEGUNDO MONITOR
+;; ============================================================
+
+(defpoll spotify_info :interval "1s" "python3 $HOME/.config/eww/scripts/spotify.py") 
+
+(defpoll gpu_info :interval "2s" "~/.config/eww/scripts/getgpuamd.sh") 
+
+
+;; --- WIDGETS ---
+(defwidget spotify_widget []
+  (box :class "spotify-box"
+       :orientation "h"
+       :space-evenly false
+       :halign "center"
+    (label :text "  ${spotify_info}") ;; Icono de Spotify + Info
+  )
+)
+
+(defwidget gpu_widget []
+  (box :class "gpu-box"
+       :orientation "h"
+       :space-evenly false
+       :halign "end"
+       :style "padding-right: 15px;" 
+    (label :text "${gpu_info}")  
+  )
+)
+
+(defwidget topbar_sec_layout []
+  (centerbox 
+    :orientation "h"
+    
+  
+    (workspaces 
+      :active-workspace active-workspace
+      :focused-workspace focused-workspace
+      :urgent-workspace urgent-workspace)
+      
+    (spotify_widget)
+    
+    (gpu_widget)
+  )
+)
+
+
+(defwindow topbar_sec
+  :monitor 1                
+  :windowtype "dock"
+  :geometry (geometry :x "0%"
+                      :y "0%"
+                      :width "100%"
+                      :height "35px" 
+                      :anchor "top center")
+  :reserve (struts :side "top" :distance "4%")
+  :stacking "fg"
+  :exclusive true
+  (topbar_sec_layout))

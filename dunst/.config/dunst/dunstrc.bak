@@ -1,0 +1,75 @@
+[global]
+    # --- CONFIGURACIÓN DE PANTALLA ---
+    monitor = eDP-1
+    follow = none
+    
+    # Ubicación (Arriba a la derecha)
+    origin = top-right
+    offset = 20x20
+    
+    # --- APARIENCIA ---
+    # Tamaño de la notificación
+    width = 320
+    height = 100
+    notification_limit = 5
+    
+    # Barra de progreso (para timers, volumen, brillo)
+    progress_bar = true
+    progress_bar_height = 10
+    progress_bar_frame_width = 1
+    progress_bar_min_width = 150
+    progress_bar_max_width = 300
+
+    # Borde y Redondeo
+    frame_width = 2
+    frame_color = "#89B4FA"
+    corner_radius = 12    # Bordes redondeados
+    
+    # Espaciado
+    padding = 15
+    horizontal_padding = 15
+    text_icon_padding = 15
+    
+    # Fuente e Iconos
+    icon_position = left
+    min_icon_size = 48
+    max_icon_size = 64
+    
+    # --- COMPORTAMIENTO ---
+    # Tiempo máximo de visualización (5 segundos para todo)
+    timeout = 5
+    
+    # Formato del texto
+    format = "<b>%s</b>\n%b"
+    
+    # Transparencia (0 es opaco, 100 es invisible)
+    # Hyprland maneja la transparencia/blur mejor desde su config, 
+    # pero aquí podemos poner un poco de base.
+    transparency = 10
+
+# ==========================================================
+# TEMAS Y COLORES (Estilo Nightwolf)
+# ==========================================================
+
+# 1. NIVEL BAJO -> "ADVERTENCIA" (AMARILLO)
+[urgency_low]
+    background = "#0f1419"
+    foreground = "#F9E2AF"
+    frame_color = "#F9E2AF"
+    timeout = 5
+
+# 2. NIVEL NORMAL -> "ESTÁNDAR" (AZUL)
+[urgency_normal]
+    background = "#0f1419"
+    foreground = "#CDD6F4"
+    frame_color = "#89B4FA"
+    timeout = 5
+
+# 3. NIVEL CRÍTICO -> "ALERTA" (ROJO)
+[urgency_critical]
+    background = "#0f1419"
+    foreground = "#F38BA8"
+    frame_color = "#F38BA8"
+    timeout = 5
+    # Opcional: que parpadee para llamar la atención, si no te gusta bórralo
+    # icon = /ruta/a/icono_alerta.png

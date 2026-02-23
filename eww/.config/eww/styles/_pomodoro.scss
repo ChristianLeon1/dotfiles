@@ -1,0 +1,40 @@
+.pomodoro-box {
+    background-color: rgba($background, 0.95);
+    border: 2px solid $color4; 
+    border-radius: 12px;
+    padding: 20px;
+}
+
+.timer-text {
+    font-size: 48px;
+    font-weight: bold;
+    color: $foreground;
+}
+
+.controls button {
+    background-color: $color8; 
+    color: $foreground;
+    border-radius: 8px;
+    padding: 10px;
+    margin: 5px;
+    font-size: 20px;
+    transition: all 0.2s ease;
+    border: 1px solid transparent;
+}
+
+.controls button:hover {
+    background-color: $color4;
+    color: $background; /* Invertimos color para contraste */
+}
+.btn-toggle {
+    color: $color2; 
+}
+.btn-reset {
+    color: $color1; 
+}
+.pomodoro-box.running {
+    border-color: $color2;
+}
+.timer-text.break-mode {
+    color: $color2; /* Se pone verde/cyan en el descanso */
+}

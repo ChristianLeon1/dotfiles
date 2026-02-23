@@ -1,0 +1,4 @@
+(include "eww_topbar.yuck")
+(include "eww_topbar_sec.yuck")
+(include "eww_sidebar.yuck")
+(include "eww_pomodoro.yuck")

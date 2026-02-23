@@ -1,0 +1,10 @@
+// AÑO: {{YEAR}} CREADOR: {{NAME}}
+
+#include <stdio.h>
+#include <stdint.h> 
+#include <stdlib.h> 
+
+int main(){
+  
+  return 0; 
+}

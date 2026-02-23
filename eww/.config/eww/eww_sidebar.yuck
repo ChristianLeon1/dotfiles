@@ -1,0 +1,151 @@
+;; ============================================================
+;;                                                            
+;;      SIDEBAR WIDGET CONFIGURATION (Eww)                    
+;;                                                            
+;; ============================================================
+
+;; --- VARIABLES Y POLLS ---
+;; Intervalos de actualización para datos
+(defpoll kernel :interval "12h" "uname -r")
+(defpoll short_date :interval "1h" "date '+%d %b %Y'")
+(defpoll gpu_amd :interval "1s" :initial "[]" "scripts/gpu_info.sh")
+;; Configuración de la ventana para i3/Hyprland
+(defwindow sidebar
+:monitor 1
+  :geometry (geometry :x "10px"
+                      :y "0%"
+                      :width "25%" ;; Ancho ajustado
+                      :height "85%"   ;; Deja un pequeño margen arriba/abajo
+                      :anchor "right center")
+  :stacking "bg"      ;; Al fondo, pegado al escritorio
+  :exclusive false   ;; IMPORTANTE: Reserva espacio en Tiling WMs (no se tapa por ventanas)
+  :focusable false    ;; No roba el foco del teclado
+  :visible true       ;; Visible al iniciar Eww
+  :namespace "eww_sidebar_blur"
+  (sidebar_layout))
+
+;; --- MAIN LAYOUT WIDGET ---
+(defwidget sidebar_layout []
+  (box :class "sidebar-container"
+       :orientation "v"
+       :space-evenly false
+       
+       ;; 1. HEADER: Icono + Fecha + Hora
+       (box :class "header" 
+            :orientation "v" 
+            :space-evenly false
+            ;; ¡Recuerda cambiar la ruta a tu imagen!
+            (label :text short_date :class "date-label" :halign "center")
+            (label :text time :class "time-label" :halign "center"))
+
+;; 3. CPU SECTION (12 NÚCLEOS)
+       (box :class "section cpu-section" 
+            :orientation "v" 
+            :space-evenly false
+            
+            (label :text "» CPU  ${round(EWW_CPU.avg, 0)}%" 
+                   :halign "start" 
+                   :class "section-title")
+            
+            ;; FILA 1: Cores 0-3 (I - IV)
+            ;; Usamos space-evenly true para distribuir el ancho equitativamente
+            (box :orientation "h" :spacing 4 :class "core-row" :space-evenly true
+                 (core_graph :label "I"   :value {EWW_CPU.cores[0].usage})
+                 (core_graph :label "II"  :value {EWW_CPU.cores[1].usage})
+                 (core_graph :label "III" :value {EWW_CPU.cores[2].usage})
+                 (core_graph :label "IV"  :value {EWW_CPU.cores[3].usage}))
+
+            ;; FILA 2: Cores 4-7 (V - VIII)
+            (box :orientation "h" :spacing 4 :class "core-row" :space-evenly true
+                 (core_graph :label "V"    :value {EWW_CPU.cores[4].usage})
+                 (core_graph :label "VI"   :value {EWW_CPU.cores[5].usage})
+                 (core_graph :label "VII"  :value {EWW_CPU.cores[6].usage})
+                 (core_graph :label "VIII" :value {EWW_CPU.cores[7].usage}))
+
+            ;; FILA 3: Cores 8-11 (IX - XII)
+            (box :orientation "h" :spacing 4 :class "core-row" :space-evenly true
+                 (core_graph :label "IX"  :value {EWW_CPU.cores[8].usage})
+                 (core_graph :label "X"   :value {EWW_CPU.cores[9].usage})
+                 (core_graph :label "XI"  :value {EWW_CPU.cores[10].usage})
+                 (core_graph :label "XII" :value {EWW_CPU.cores[11].usage})))
+       ;; 4. MEMORY SECTION
+       (box :class "section ram-section" 
+            :orientation "v" 
+            :space-evenly false
+            (label :text "» MEMORY" :halign "start" :class "section-title")
+            
+            (progress :value {EWW_RAM.used_mem_perc} 
+                      :class "ram-bar" 
+                      :orientation "h")
+            
+            (label :text "${round(EWW_RAM.used_mem / 1024 / 1024 / 1024, 2)}GiB / ${round(EWW_RAM.total_mem / 1024 / 1024 / 1024, 2)}GiB" 
+                   :class "sub-text" 
+                   :halign "end"))
+
+       (box :class "section gpu-section" 
+            :orientation "v" 
+            :space-evenly false
+            ;; Solo visible si detecta al menos 1 GPU
+            :visible {arraylength(gpu_amd) > 0}
+
+            ;; --- GPU 1 (Índice 0) ---
+            (label :text "» ${gpu_amd[0].name} (${gpu_amd[0].temp}°C)" 
+                   :halign "start" 
+                   :class "section-title")
+            
+            (box :orientation "h" :spacing 6 :class "core-row" :space-evenly true
+                 (core_graph :label "CORE" :value {gpu_amd[0].usage})
+                 (core_graph :label "VRAM" 
+                             :value {gpu_amd[0].mem_total > 0 ? round((gpu_amd[0].mem_used / gpu_amd[0].mem_total) * 100, 0) : 0}))
+            
+            (label :text "${gpu_amd[0].mem_used}MB / ${gpu_amd[0].mem_total}MB" 
+                   :class "sub-text" :halign "end")
+
+            ;; --- GPU 2 (Índice 1) ---
+            ;; Este bloque (box) completo se oculta si no hay una 2da GPU
+            (box :orientation "v" 
+                 :space-evenly false 
+                 :class "gpu-secondary"
+                 :visible {arraylength(gpu_amd) > 1}
+                 :style "margin-top: 15px;" ;; Separación entre GPUs
+
+                 (label :text "» ${gpu_amd[1].name} 650M (${gpu_amd[1].temp}°C)" 
+                        :halign "start" 
+                        :class "section-title")
+                 
+                 (box :orientation "h" :spacing 6 :class "core-row" :space-evenly true
+                      (core_graph :label "CORE" :value {gpu_amd[1].usage})
+                      (core_graph :label "VRAM" 
+                                  :value {gpu_amd[1].mem_total > 0 ? round((gpu_amd[1].mem_used / gpu_amd[1].mem_total) * 100, 0) : 0}))
+                 
+                 (label :text "${gpu_amd[1].mem_used}MB / ${gpu_amd[1].mem_total}MB" 
+                        :class "sub-text" :halign "end")))
+       ;; Espaciador flexible (empuja el footer hacia abajo)
+       (box :vexpand true)
+              ))
+
+;; --- SUB-WIDGETS (Componentes Reutilizables) ---
+
+;; Widget para gráficas de núcleo individual
+(defwidget core_graph [label value]
+  (box :orientation "v" 
+       :class "core-box" 
+       :space-evenly false
+       :vexpand false
+       
+       ;; Cabecera del Core (Nombre y %)
+       (box :orientation "h" 
+            :space-evenly true
+            (label :text "${label}" :halign "start" :class "core-label")
+            (label :text "${round(value, 0)}%" :halign "end" :class "core-perc"))
+       
+       ;; Gráfica de línea
+       (graph :value value
+              :thickness 2
+              :height 40
+              :time-range "30s"
+              :min 0
+              :max 100
+              :dynamic true
+              :line-style "round"
+              :class "cpu-graph")))

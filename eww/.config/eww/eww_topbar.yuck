@@ -1,0 +1,377 @@
+(defwidget topbar []
+  (centerbox 
+    :orientation "h"
+    (workspaces 
+      :active-workspace active-workspace
+      :focused-workspace focused-workspace
+      :urgent-workspace urgent-workspace)
+    (time-date)
+    (sidestuff)
+  )
+
+)
+
+
+(deflisten active-workspace `$HOME/.config/eww/scripts/getactivews`)
+(deflisten urgent-workspace `$HOME/.config/eww/scripts/geturgentws`)
+;; had to set the initial workspace to "1"
+(deflisten focused-workspace :initial "1" `$HOME/.config/eww/scripts/getfocusedws`)
+
+(defwidget workspaces [active-workspace focused-workspace urgent-workspace]
+	(box
+    :class "workspaces"
+    :orientation "h"
+		:space-evenly true
+    :halign "start"
+    
+		(button
+    :class {
+      arraylength(search(focused-workspace, "1")) > 0 ? "focused-workspace" : 
+      arraylength(search(urgent-workspace, "1")) > 0 ? "urgent-workspace" : 
+      arraylength(search(active-workspace, "1")) > 0 ? "active-workspace" : 
+      "regular"
+    }
+    :onclick "hyprctl dispatch workspace 1" 1)
+
+    (button  
+    :class {
+      arraylength(search(focused-workspace, "2")) > 0 ? "focused-workspace" : 
+      arraylength(search(urgent-workspace, "2")) > 0 ? "urgent-workspace" : 
+      arraylength(search(active-workspace, "2")) > 0 ? "active-workspace" : 
+      "regular"
+    }
+    :onclick "hyprctl dispatch workspace 2" 2)
+
+    (button
+    :class {
+      arraylength(search(focused-workspace, "3")) > 0 ? "focused-workspace" : 
+      arraylength(search(urgent-workspace, "3")) > 0 ? "urgent-workspace" : 
+      arraylength(search(active-workspace, "3")) > 0 ? "active-workspace" : 
+      "regular"
+    }
+    :onclick "hyprctl dispatch workspace 3" 3)
+    (button
+    :class {
+      arraylength(search(focused-workspace, "4")) > 0 ? "focused-workspace" : 
+      arraylength(search(urgent-workspace, "4")) > 0 ? "urgent-workspace" : 
+      arraylength(search(active-workspace, "4")) > 0 ? "active-workspace" : 
+      "regular"
+    }
+    :onclick "hyprctl dispatch workspace 4" 4)
+
+    (button
+    :class {
+      arraylength(search(focused-workspace, "5")) > 0 ? "focused-workspace" : 
+      arraylength(search(urgent-workspace, "5")) > 0 ? "urgent-workspace" : 
+      arraylength(search(active-workspace, "5")) > 0 ? "active-workspace" : 
+      "regular"
+    }
+    :onclick "hyprctl dispatch workspace 5" 5)
+
+    (button
+    :class {
+      arraylength(search(focused-workspace, "6")) > 0 ? "focused-workspace" : 
+      arraylength(search(urgent-workspace, "6")) > 0 ? "urgent-workspace" : 
+      arraylength(search(active-workspace, "6")) > 0 ? "active-workspace" : 
+      "regular"
+    }
+    :onclick "hyprctl dispatch workspace 6" 6)
+    (button
+    :class {
+      arraylength(search(focused-workspace, "7")) > 0 ? "focused-workspace" : 
+      arraylength(search(urgent-workspace, "7")) > 0 ? "urgent-workspace" : 
+      arraylength(search(active-workspace, "7")) > 0 ? "active-workspace" : 
+      "regular"
+    }
+    :onclick "hyprctl dispatch workspace 7" 7)
+
+    (button
+    :class {
+      arraylength(search(focused-workspace, "8")) > 0 ? "focused-workspace" : 
+      arraylength(search(urgent-workspace, "8")) > 0 ? "urgent-workspace" : 
+      arraylength(search(active-workspace, "8")) > 0 ? "active-workspace" : 
+      "regular"
+    }
+    :onclick "hyprctl dispatch workspace 8" 8)
+
+    (button
+    :class {
+      arraylength(search(focused-workspace, "9")) > 0 ? "focused-workspace" : 
+      arraylength(search(urgent-workspace, "9")) > 0 ? "urgent-workspace" : 
+      arraylength(search(active-workspace, "9")) > 0 ? "active-workspace" : 
+      "regular"
+    }
+    :onclick "hyprctl dispatch workspace 9" 9)
+    (button
+    :class {
+      arraylength(search(focused-workspace, "10")) > 0 ? "focused-workspace" : 
+      arraylength(search(urgent-workspace, "10")) > 0 ? "urgent-workspace" : 
+      arraylength(search(active-workspace, "10")) > 0 ? "active-workspace" : 
+      "regular"
+    }
+    :onclick "hyprctl dispatch workspace 10" 10)
+  )
+)
+
+(defwidget sidestuff []
+  (box 
+    :class "sidestuff" 
+    :orientation "h" 
+    :space-evenly false 
+    :halign "end"
+    (network :strength net :offline "󰤭" :excellent "󰤨" :good "󰤥"
+            :okay "󰤢" :slow "󰤟" :lan "󰌗") 
+    (bluetooth :connected "󰂱" :on "󰂯" :off "󰂲")
+    (audio :high "" :medium "󰖀" :low "󰕿" :muted "󰝟"
+            :volume volume)
+    (cpu_usage :icon "󰍛")
+
+    (ram :icon "󱛟")
+
+    (disk :icon "")
+    
+    (battery :status {EWW_BATTERY.BAT0.status}
+            :capacity {EWW_BATTERY.BAT0.capacity}
+            :charge "󰂄" :full "󰁹" :ninety "󰂂" :eighty "󰂁" :seventy "󰂀" :sixty "󰁿" 
+            :fifty "󰁾"  :fourty "󰁽" :thirty "󰁼" :twenty "󰁻" :eleventy "󱃍")
+
+    (buttons 
+      :shutdown "systemctl poweroff" 
+      :reboot "systemctl reboot"
+      :logout "hyprctl dispatch exit"
+      :suspend "systemctl suspend"
+      :hibernate "systemctl hibernate"
+      :shutdown_icon "⏻" 
+      :reboot_icon "󰑓"
+      :logout_icon "󰿅"
+      :suspend_icon "󰏦"
+      :hibernate_icon "󰜗"
+    )
+  )
+)
+
+
+(defwidget cpu_usage [icon]
+  (box  
+    (label :text "${icon}   ${round(EWW_CPU.avg, 1)}%")
+  )
+)
+
+(defwidget ram [icon]
+  (box  
+    :tooltip "${round(EWW_RAM.used_mem / 1048576, 2)}MiB/${round(EWW_RAM.total_mem / 1048576, 2)}MiB"
+    (label :text "${icon}   ${round(EWW_RAM.used_mem_perc, 1)}%")
+  )
+)
+
+
+(defwidget disk [icon]
+  (box 
+    :tooltip `"/": ${round(EWW_DISK['/'].used / 1000000000, 2)}GB/${round(EWW_DISK['/'].total / 1000000000, 2)}GB`
+    (label :text "${icon}   ${round((EWW_DISK['/'].used_perc), 1)}%")
+  )
+)
+
+
+(defpoll battery_time :interval "30s" "~/.config/eww/scripts/battery_time.sh")
+(defvar bat_rev false)
+;; 2. El Widget modificado
+(defwidget battery [capacity status eleventy twenty thirty fourty
+                    fifty sixty seventy eighty ninety full charge]
+  (eventbox
+    ;; Al pasar el mouse, activamos la animación
+    :onhover "eww update bat_rev=true"
+    ;; Al quitar el mouse, la desactivamos
+    :onhoverlost "eww update bat_rev=false"
+    
+    (box :class "battery"
+         :space-evenly false 
+         :spacing 8
+      
+      ;; --- PARTE 1: SIEMPRE VISIBLE (Icono y Porcentaje) ---
+      (label :text {(status == 'Charging' ? charge :
+          capacity < 10 ? eleventy :
+            capacity < 20 ? twenty :
+              capacity < 30 ? thirty :
+                capacity < 40 ? fourty :
+                  capacity < 50 ? fifty :
+                    capacity < 60 ? sixty :
+                      capacity < 70 ? seventy :
+                        capacity < 80 ? eighty :
+                          capacity < 90 ? ninety : full) + "  ${capacity}%"})
+      
+      ;; --- PARTE 2: OCULTA (El Tiempo) ---
+      (revealer 
+        :transition "slideleft"  ;; Se desliza hacia la izquierda
+        :reveal bat_rev          ;; Solo se muestra si bat_rev es true
+        :duration "350ms"
+        
+        ;; Aquí mostramos la variable del script de tiempo
+        (label :text "  ${battery_time}") 
+      )
+    )
+  )
+)
+
+(defvar net_rev false)
+
+(defpoll eth_connected :interval "2s"
+  "nmcli -t -f TYPE,STATE device | grep -q 'ethernet:connected' && echo 'true' || echo 'false'")
+
+(defpoll net :interval "1s"
+  :initial "N/A"
+  `LANG=C nmcli -t -f SIGNAL,ACTIVE device wifi | awk -F':' '{if($2=="yes")print$1}'`)
+
+(defpoll wifi_name :interval "5s"
+  "LANG=C nmcli -t -f ACTIVE,SSID device wifi | awk -F':' '{if($1==\"yes\")print$2}'")
+
+(defwidget network [strength offline excellent good okay slow lan]
+  (eventbox
+    :onhover "eww update net_rev=true"
+    :onhoverlost "eww update net_rev=false"
+    :onclick "networkmanager_dmenu &"
+    
+    (box :space-evenly false :spacing 8
+      
+      (label 
+        :text {eth_connected == "true" ? lan : 
+               strength == "N/A" ? offline :
+               strength == "" ? offline :
+               strength < 26 ? slow :
+               strength < 51 ? okay :
+               strength < 76 ? good : excellent}
+        
+        :class {eth_connected == "true" ? "lan-icon" : 
+                strength == "" ? "offline-icon" : "wifi-icon"}
+      )
+
+      (revealer 
+        :transition "slideleft"
+        
+        :reveal {net_rev && (eth_connected == "true" || wifi_name != "")}
+        :duration "350ms"
+        
+        (label :text {eth_connected == "true" ? " Ethernet" : " ${wifi_name}"})
+      )
+    )
+  )
+)
+(defpoll bt_status :interval "2s" "~/.config/eww/scripts/get_bt.sh")
+;; Variable para el nombre del dispositivo
+(defpoll bt_name :interval "2s" "~/.config/eww/scripts/get_bt_name.sh")
+(defvar bt_rev false)
+
+;; El Widget con la lógica
+(defwidget bluetooth [connected on off]
+  (eventbox
+    ;; 1. Detectar Mouse
+    :onhover "eww update bt_rev=true"
+    :onhoverlost "eww update bt_rev=false"
+    ;; 2. Acciones (Click izq: Rofi, Click der: Toggle On/Off)
+    :onclick "rofi-bluetooth &"
+    :onrightclick "rfkill toggle bluetooth"
+    
+    (box 
+      :class "bluetooth-box"
+      :space-evenly false
+      :spacing 8
+      
+      ;; --- ICONO (Siempre visible, cambia de color/forma) ---
+      (label :class "bluetooth-icon ${bt_status}"
+             :text {bt_status == "connected" ? connected : 
+                    bt_status == "on" ? on : off})
+      
+      ;; --- NOMBRE DEL DISPOSITIVO (Solo si conectado + Hover) ---
+      (revealer 
+        :transition "slideleft"
+        ;; Solo muestra si mouse encima Y hay un nombre detectado
+        :reveal {bt_rev && bt_name != ""}
+        :duration "350ms"
+        
+        (label :text "  ${bt_name}")
+      )
+    )
+  )
+)
+(defwidget audio [high medium low muted volume]
+  (eventbox 
+  :class "audio"
+  :onscroll "echo {} | sed -e 's/up/pamixer -i 1/g' -e 's/down/pamixer -d 1/g' | bash"
+  :onmiddleclick "pamixer -t"
+  :onclick "pavucontrol &"
+    (box 
+      (label :text {volume == "" ? "${medium}   ...%" :  ;; <--- NUEVA LÍNEA DE PROTECCIÓN
+                    volume < 0 ? `${muted} ` : 
+                    volume < 30 ? `${low}    ${volume}%` :
+                    volume < 70 ? `${medium}    ${volume}%` : 
+                    `${high}    ${volume}%`})
+    )
+  )
+)
+(defpoll volume :interval "150ms" `$HOME/.config/eww/scripts/getvol`)
+;(deflisten volume :initial `50` `pactl subscribe | grep --line-buffered "sink" | while read -r line; do $HOME/.config/eww/scripts/getvol; done`)
+
+
+
+(defpoll date :interval "1s" :initial "N/A" "date +'%a %d %b %Y'")
+(defpoll time :interval "1s" :initial "N/A" "date +'%H:%M:%S'")
+(defvar time_rev false)
+(defwidget time-date []
+  (eventbox 
+    :class "time"
+    :onhover "eww update time_rev=true"
+    :onclick "eww-wayland open --toggle pomodoro_window"
+    :onhoverlost "eww update time_rev=false"
+    (box :space-evenly "false"
+      (label :text "${time}")
+      (revealer 
+        :transition "slideleft"
+        :reveal time_rev
+        :duration "350ms"
+        (label :text "${date}")
+      )
+    )  
+  )
+)
+
+(defvar but_rev false)
+(defwidget buttons [shutdown shutdown_icon 
+                    reboot reboot_icon 
+                    logout logout_icon
+                    suspend suspend_icon
+                    hibernate hibernate_icon]
+  (eventbox
+    :onhover "eww update but_rev=true"
+    :onhoverlost "eww update but_rev=false"
+    (box :class "power-buttons"
+      :space-evenly false
+      (label :text "|")
+      (revealer 
+        :transition "slideright"
+        :reveal but_rev
+        :duration "350ms"
+        (box 
+          (button :onclick suspend suspend_icon)
+          (button :onclick hibernate hibernate_icon)
+          (button :onclick logout logout_icon)
+          (button :onclick reboot reboot_icon)
+        )
+      )
+      (button :class "shutdown" :onclick shutdown shutdown_icon)
+    )
+  )
+)
+
+(defwindow topbar
+  :monitor 0
+  :windowtype "dock"
+  :geometry (geometry :x "0%"
+                      :y "0%"
+                      :width "100%"
+                      :height "10px"
+                      :anchor "top center")
+  :reserve (struts :side "top" :distance "4%")
+  :stacking "fg"
+  :exclusive true  ;; <--- ESTO ES LO MÁS IMPORTANTE
+  :windowtype "dock" ;; <--- A veces necesario para comportamiento nativo
+  (topbar))

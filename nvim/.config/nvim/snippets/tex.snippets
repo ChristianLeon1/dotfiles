@@ -1,0 +1,374 @@
+# -- SNIPPETS --
+
+snippet reales "Números Reales"
+	\mathbb{R}
+
+snippet complejos "Números Complejos"
+	\mathbb{C}
+
+snippet campo "Campo K"
+	\mathbb{K}
+
+#caratula
+snippet caratula "Portada de datos"
+	\begin{titlepage}
+	\thispagestyle{plain}
+	\thispagestyle{empty}
+	\begin{tabular}{p{0.75\textwidth} p{0.25\textwidth}}
+    \includegraphics[width=2.5cm,height=3cm]{~/.config/nvim/lua/templates/ipn.png} & \includegraphics[width=2.5cm,height=3cm]{~/.config/nvim/lua/templates/esfm.png}
+	\end{tabular}
+	\begin{center}
+    \vspace{1cm}
+    \textbf{
+      \Huge{INSTITUTO POLITÉCNICO NACIONAL\\}
+      \vspace{0.5cm}
+      \huge\sc{Escuela Superior de Física y Matemática\\}
+      \vspace{0.7cm}
+      \Large{\Materia\\}
+      \vspace{1.5cm} }
+    \hrule
+    \vspace{0.3cm}
+    \sc\LARGE\textbf{\Titulo\\}
+    \vspace{0.3cm}
+    \hrule
+    \vspace{1.5cm}
+    \begin{minipage}[t]{8cm}
+      \Large{\bf Profesor:\\ \Profesor}
+    \end{minipage}\hfill
+    \begin{minipage}[t]{8cm}\raggedleft
+      \Large{\bf Alumno: \\\Nombreautor\\ }
+    \end{minipage} \\
+    \vspace{1cm}
+    \large\textbf{\Grupo\\}
+    \vspace{1cm}
+    \hrule
+    \vspace{0.2cm}
+    \hrule
+    \vspace{1cm}
+    \large\textbf{\today}
+	\end{center}
+	\end{titlepage}
+
+snippet equationn "Ecuación sin enumeración"
+	\begin{equation*}
+		${1}
+	\end{equation*}
+
+snippet bigpar "Parentesis"
+	\left( ${1} \right)
+
+snippet bigcorch "Corchetes"
+	\left[ ${1} \right]
+
+snippet bigllaves "Llaves"
+	\left\{ ${1} \right\}
+
+snippet boxnotitle "Tcolorbox sin titulo"
+	\begin{tcolorbox}[colback=myNewColorB!10!white,colframe=myNewColorA!75!black]
+	{
+		${1}
+	}
+	\end{tcolorbox}
+
+snippet boxtitle "Tcolorbox con titulo"
+	\begin{tcolorbox}[colback=myNewColorB!10!white,colframe=myNewColorA!75!black,title=\centering\Large{${1}}]
+	{
+		${2}
+	}
+	\end{tcolorbox}
+
+snippet visible "Visible"
+	\visible <${1}-> {
+	}
+
+snippet determinant "Determinante"
+	\left |
+	\begin{matrix}
+		${1}
+	\end{matrix}
+	\right |
+
+snippet to "to" b
+	^ {${1}}
+
+# new glossary entry
+snippet gloss "Glossary Entry" b
+	\newglossaryentry{${1:entry}}{
+			name = {${2:name}},
+			symbol = {\ensuremath{${3:symbol}}},
+			description = {${4:description}}
+	}
+
+# custom theorem enviornment
+snippet customthm "Custom Theorem" b
+	\vspace{.1in}
+	\begin{customthm}{(${1:label})}
+		${2:claim}
+	\end{customthm}
+	\begin{Answer}
+		${0}
+	\end{Answer}
+
+# framed text enviornment
+snippet textbox "Text Box" b
+	\begin{tcolorbox}
+		${0}
+	\end{tcolorbox}
+
+# new command
+snippet nc "New Command" b
+	\newcommand{${1:cmd}}[${2:opt}]{${3:realcmd}} ${0}
+
+#usepackage
+snippet up "Use Package" b
+	\usepackage[${1:options}]{${2:package}} ${0}
+
+# \begin{}...\end{}
+snippet begin "Begin End"
+	\begin{${1:env}}
+		${2:${VISUAL}}
+	\end{$1}${0}
+
+# Align(ed)
+snippet align "Align Env" b
+	\begin{align${1:ed}}
+		\label{${2:name}}
+		${0}
+	\end{align$1}
+
+# Quote
+snippet quote "Quotation" b
+	\vspace{-.1in}
+	\begin{quote}\singlespacing\small
+		${0}
+		\hfill(p.~${1})
+	\end{quote}
+	\vspace{.1in}
+
+# Labelalign
+snippet labelalign "Label Align" b
+	\vspace{.05in}
+	\begin{labelalign} %\small\onehalfspacing
+		\item ${0}
+	\end{labelalign}
+	\vspace{.05in}
+
+# Enumerate
+snippet enum "Enumerate" b
+	\begin{enumerate}
+		\item ${0}
+	\end{enumerate}
+
+# Itemize
+snippet item "Itemize" b
+	\begin{itemize}
+		\item ${0}
+	\end{itemize}
+
+#Item
+snippet i "Item"
+	\item[${1:\it} ${2:Label:}] ${0}
+
+# Cases
+snippet case "Cases"
+	${1:LHS}=
+	\begin{cases}
+		${2:Value}, &\text{ if } ${3:case}\\
+		${4:Value}, &\text{ otherwise.} ${5:otherwise}.
+	\end{cases}${0}
+
+# Section
+snippet sec "Section" b
+	\section{${1:Name}}%
+		\label{sec:${2:$1}}
+		${0}
+
+# Sub Section
+snippet sub "Sub Section" b
+	\subsection{${1:Name}}%
+		\label{sub:${2:$1}}
+		${0}
+
+# Sub Sub Section
+snippet ssub "Sub Sub Section" b
+	\subsubsection{${1:Name}}%
+		\label{sub:${2:$1}}
+		${0}
+
+# Hyper Section
+snippet hsec "Hyper Section" b
+	\hypsection{${1:Name}}%
+		\label{sec:${2:$1}}
+		${0}
+
+# Hyper Sub Section
+snippet hsub "Hyper Sub Section" b
+	\hypsubsection{${1:Name}}%
+		\label{sub:${2:$1}}
+		${0}
+
+# Hyper Sub Sub Section
+snippet hssub "Hyper Sub Sub Section" b
+	\hypsubsubsection{${1:Name}}%
+		\label{sub:${2:$1}}
+		${0}
+
+#Formating text: italic, bold, underline, small capital, emphase ..
+snippet it "Italics" wi
+	\textit{${1}}${0}
+
+snippet tt "Teletype" wi
+	\texttt{${1}}${0}
+
+snippet bf "Bold" wi
+	\textbf{${1}}${0}
+
+snippet sc "Small Caps" wi
+	\textsc{${1}}${0}
+
+snippet tsub "Subscripted" i
+	\textsubscript{${1}}${0}
+
+snippet tsup "Superscripted" i
+	\textsuperscript{${1}}${0}
+
+#Math font
+snippet mf "Mathfrak" w
+	\mathfrak{${1}}${0}
+
+snippet mc "Mathcal" w
+	\mathcal{${1}}${0}
+
+snippet ms "Mathscr" w
+	\mathscr{${1}}${0}
+
+#misc
+snippet fproof "Footnote Proof" bi
+	\footnote{\textit{Proof:} ${1:Begin} \qed}${0}
+
+snippet lab "Label" wi
+	\label{${1:LABEL}}${0}
+
+snippet fn "Footnote" wi
+	\footnote{${1:FOOTNOTE}}${0}
+
+snippet fig "Figure environment" b
+	\begin{figure}
+	\begin{center}
+		\includegraphics[scale=${1}]{Figures/${2}}
+	\end{center}
+	\caption{${3}}
+	\label{fig:${4}}
+	\end{figure}
+	${0}
+
+snippet tikz "Tikz environment" b
+	\begin{figure}[htpb]
+	\begin{center}
+	\begin{tikzpicture}[scale=${1:1}, transform shape]
+		${2}
+	\end{tikzpicture}
+	\end{center}
+	\caption{${3}}%
+	\label{fig:${4}}
+	\end{figure}
+	${0}
+
+snippet lemma "Lemma" bi
+	\begin{Lthm} \label{${1:label}}
+		${0:${VISUAL}}
+	\end{Lthm}
+
+snippet prop "Proposition" bi
+	\begin{Pthm} \label{${1:label}}
+		${0:${VISUAL}}
+	\end{Pthm}
+
+snippet thrm "Theorem" bi
+	\begin{theorem} \label{${1:label}}
+		${0:${VISUAL}}
+	\end{theorem}
+
+snippet prf "Proof" bi
+	\begin{proof}
+		${0:${VISUAL}}
+	\end{proof}
+
+snippet def "Definition" bi
+	\begin{definition}[$1]
+		${0:${VISUAL}}
+	\end{definition}
+
+snippet prob "Problem" bi
+	\begin{problem}[$1]
+		${0:${VISUAL}}
+	\end{problem}
+
+snippet corl "Corollary" bi
+	\begin{corollary}[$1]
+		${0:${VISUAL}}
+	\end{corollary}
+
+snippet example "Example" bi
+	\begin{example}[$1]
+		${0:${VISUAL}}
+	\end{example}
+
+snippet article "Article Template" bi
+	\documentclass[12pt,letterpaper]{article}
+	%Librerías de LaTeX
+	\usepackage[utf8]{inputenc}
+	\usepackage[spanish]{babel}
+	\usepackage[document]{ragged2e}
+	\usepackage[left=2.54cm, right=2.54cm, top=2.54cm, bottom=2.54cm]{geometry}
+	\usepackage{amsmath}
+	\usepackage{amsfonts}
+	\usepackage{amssymb}
+	\usepackage{amsmath}
+	\usepackage{graphicx}
+	\usepackage{siunitx}
+	\usepackage{import}
+	\usepackage{fancyhdr}
+	\usepackage{wrapfig}
+	\usepackage{subcaption}
+	\usepackage{csvsimple}
+	\usepackage{listings}
+	\usepackage{xcolor}
+	\usepackage[breaklinks=true, hidelinks]{hyperref}
+	
+	%Ingresar datos para la portada
+	\newcommand\Nombreautor{Ramírez León Christian Yael}
+	\newcommand\Materia{---}
+	\newcommand\Profesor{---}
+	\newcommand\Grupo{---}
+	\newcommand\Titulo{---}
+
+	%Comando para ingresar datos con el sistema internacional
+	\newcommand\Pnum[2]{\qty[mode=text, per-mode=fraction]{#1}{#2}}
+
+	% Inicio del documento
+	\begin{document}
+
+	%-----portada-----%
+	% \import{/home/enigma/.config/nvim/lua/templates/}{caratula.tex}
+
+	% Encabezado y pie de página
+	\pagestyle{fancy}
+	\fancyhf{}
+	\lhead[]{\Nombreautor}
+	\rhead[]{\leftmark}
+	\cfoot[\thepage]{\thepage}
+	\setcounter{page}{1}
+
+	\thispagestyle{plain}
+	\begin{center}
+		\Large{\sc{\Titulo}}
+	\end{center}
+	\hrule \vspace{2cm}
+
+	\justifying
+	
+	% Módulos del trabajo
+	${0}
+
+	\end{document}

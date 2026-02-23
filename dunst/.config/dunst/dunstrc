@@ -1,0 +1,55 @@
+include = ~/.cache/wal/dunstrc
+
+[global]
+    # --- CONFIGURACIÓN DE PANTALLA ---
+    monitor = eDP-1
+    follow = none
+    
+    # Ubicación
+    origin = top-right
+    offset = 20x20
+    
+    # --- APARIENCIA ---
+    # "Sans" usará la fuente predeterminada de tu sistema (Arial, Roboto, etc.)
+    font = Sans 11
+    
+    # --- BARRA DE PROGRESO MEJORADA ---
+    progress_bar = true
+    
+    # Altura: 20px se ve bien para estilo "bloque", 
+    # si prefieres línea fina, usa 4 o 5.
+    progress_bar_height = 20 
+
+    # IMPORTANTE: Poner esto en 0 quita el borde "feo" alrededor de la barra
+    progress_bar_frame_width = 0
+
+    # Hacemos que la barra ocupe casi todo el ancho de la notificación
+    progress_bar_min_width = 280
+    progress_bar_max_width = 300
+    
+    # Si tu versión de dunst es reciente, esto redondea la barra interna
+    progress_bar_corner_radius = 4
+
+    # Alineación
+    icon_position = left
+    vertical_alignment = center
+    
+    # Borde y Redondeo
+    frame_width = 2
+    corner_radius = 12
+    
+    # Espaciado
+    padding = 15
+    horizontal_padding = 15
+    text_icon_padding = 15
+    
+    # Fuente e Iconos
+    icon_position = left
+    min_icon_size = 48
+    max_icon_size = 64
+    
+    # --- COMPORTAMIENTO ---
+    timeout = 5
+    format = "<b>%s</b>\n%b"
+
+

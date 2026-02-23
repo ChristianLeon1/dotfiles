@@ -1,0 +1,91 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+
+# AÑO: 2026 CREADOR: Ramírez León Christian Yael
+
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+
+import glob
+import json
+import os
+
+# AÑO: 2026 CREADOR: Ramírez León Christian Yael
+import socket
+import subprocess
+import sys
+
+
+def get_socket_path():
+    # Búsqueda robusta del socket (igual que tus otros scripts)
+    sig = os.getenv("HYPRLAND_INSTANCE_SIGNATURE")
+    xdg = os.getenv("XDG_RUNTIME_DIR")
+    candidates = []
+    if sig:
+        candidates.append(f"/tmp/hypr/{sig}/.socket2.sock")
+        if xdg:
+            candidates.append(f"{xdg}/hypr/{sig}/.socket2.sock")
+    candidates += glob.glob("/tmp/hypr/*/.socket2.sock")
+    if xdg:
+        candidates += glob.glob(f"{xdg}/hypr/*/.socket2.sock")
+    for path in candidates:
+        if os.path.exists(path):
+            return path
+    return None
+
+
+def print_initial_state():
+    """Consulta hyprctl una vez al inicio para saber dónde estamos"""
+    try:
+        result = subprocess.run(
+            ["hyprctl", "activeworkspace", "-j"], capture_output=True, text=True
+        )
+        data = json.loads(result.stdout)
+        print(data["name"])
+        sys.stdout.flush()
+    except Exception:
+        pass
+
+
+# --- INICIO ---
+
+socket_path = get_socket_path()
+if not socket_path:
+    sys.exit(1)
+
+# 1. Imprimimos estado actual
+print_initial_state()
+
+# 2. Escuchamos cambios
+try:
+    with socket.socket(socket.AF_UNIX, socket.SOCK_STREAM) as client:
+        client.connect(socket_path)
+
+        while True:
+            data = client.recv(1024).decode("utf-8", errors="ignore")
+            if not data:
+                break
+
+            # Hyprland puede enviar varios eventos pegados, separamos por línea
+            lines = data.split("\n")
+
+            for line in lines:
+                # EVENTO A: Cambiamos de workspace en el mismo monitor
+                if line.startswith("workspace>>"):
+                    new_ws = line.split(">>")[1]
+                    print(new_ws)
+                    sys.stdout.flush()
+
+                # EVENTO B: Cambiamos el foco a otro monitor (que tiene otro workspace activo)
+                # Formato: focusedmon>>MONITOR_NAME,WORKSPACE_NAME
+                elif line.startswith("focusedmon>>"):
+                    parts = line.split(">>")[1].split(",")
+                    if len(parts) >= 2:
+                        new_ws = parts[1]
+                        print(new_ws)
+                        sys.stdout.flush()
+
+except KeyboardInterrupt:
+    sys.exit(0)
+except Exception:
+    sys.exit(1)

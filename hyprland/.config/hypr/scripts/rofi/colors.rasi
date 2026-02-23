@@ -1,0 +1,12 @@
+/* colors */
+
+* {
+  al:    #00000000;    /* Transparente */
+  bg:    #000000D9;    /* Fondo principal: Negro puro (con transparencia para ver las estrellas detrás) */
+  bg1:   #000000FF;    /* Fondo secundario: Negro sólido */
+  bg2:   #080810FF;    /* Elementos de entrada: Casi negro con un tinte mínimo de azul */
+  bg3:   #0000FF40;    /* Separadores: Azul profundo (el borde oscuro de la estrella) */
+  fg:    #FFFFFFFF;    /* Texto principal: Blanco brillante (el núcleo de la estrella) */
+  fga:   #00FFFFFF;    /* Texto de acento: Cyan eléctrico (los rayos de la estrella) */
+  ac:    #00FFFFFF;    /* Color de acento: Cyan eléctrico */
+}

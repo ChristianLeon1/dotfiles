@@ -1,0 +1,84 @@
+.topbar {
+  opacity: 1.0;
+  padding: 15px;
+}
+
+.sidestuff {
+  background-color: rgba($background, 0.8); /* Sustituido $card-bg */
+  padding: 1px 10px;
+  border-radius: 15px;
+  font-size: large;
+
+  * {
+    padding: 0 5px;
+  }
+}
+
+.workspaces, .time {
+  background-color: rgba($background, 0.8); /* Sustituido $card-bg */
+  padding: 3px 10px;
+  border-radius: 15px;
+}
+
+.workspaces button, .power-buttons button {
+  padding: 5px 10px;
+  border-radius: 15px;
+  margin: 0 2px;
+  transition: all 0.15s ease-out;
+}
+
+.active-workspace {
+  background-color: $color8; /* Sustituido $text-secondary (Gris medio) */
+}
+
+.focused-workspace {
+  background-color: $color4; /* Sustituido $accent-blue (Azul fuerte) */
+}
+
+.urgent-workspace {
+  background-color: $color1; /* Sustituido $accent-danger (Rojo) */
+}
+
+.time * {
+  padding: 0 10px;
+}
+
+.power-buttons button {
+  &:hover {
+    transition: 200ms linear background-color, border-radius;
+    background-color: rgba($color6, 0.2); /* Sustituido $accent-cyan */
+  }
+}
+
+.power-buttons .shutdown {
+  color: $color1; /* Sustituido $accent-danger */
+}
+
+// --- Estilos para la Barra Secundaria (Monitor 1) ---
+
+.spotify-box, .gpu-box {
+  background-color: rgba($background, 0.8); /* Sustituido $card-bg */
+  padding: 1px 10px;
+  border-radius: 15px;
+  font-size: large;
+
+  * {
+    padding: 0 5px;
+  }
+}
+
+// --- Colores Específicos (Solo Texto/Iconos) ---
+
+.topbar_sec {
+  padding: 8px;
+}
+
+.spotify-box {
+  color: $color2; /* Sustituido #1db954 (Verde de Wal) */
+  font-size: 15px;
+}
+
+.gpu-box {
+  color: $color5; /* Sustituido variable morada ($color5 es magenta/morado) */
+  font-size: 15px;
+}

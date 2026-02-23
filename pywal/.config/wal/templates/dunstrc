@@ -1,0 +1,20 @@
+[urgency_low]
+    background = "{color0}"
+    foreground = "{cursor}"
+    frame_color = "{color2}"
+    icon = "{color2}"
+    highlight = "{color2}" 
+
+[urgency_normal]
+    background = "{color0}"
+    foreground = "{cursor}"
+    frame_color = "{color4}"
+    icon = "{color4}"
+    highlight = "{color4}"
+
+[urgency_critical]
+    background = "{color0}"
+    foreground = "{cursor}"
+    frame_color = "{color1}"
+    icon = "{color1}"
+    highlight = "{color1}"

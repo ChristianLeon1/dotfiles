@@ -1,0 +1,47 @@
+(defvar pomodoro_display "25:00")
+(defvar pomodoro_state "stopped")
+(defvar pomodoro_mode "work")
+(defvar pomodoro_session "0")
+(defpoll time_poll :interval "1s" "date +'%H:%M'")
+(defwindow pomodoro_window
+  :monitor 0
+  :geometry (geometry :x "0%"
+                      :y "20px"
+                      :width "200px"
+                      :height "200px"
+                      :anchor "top center")
+  :stacking "overlay"
+  :exclusive false
+  (pomodoro_ui))
+
+(defwidget pomodoro_ui []
+  (box :class "pomodoro-box ${pomodoro_mode == 'work' ? '' : 'break'}" 
+       :orientation "v" 
+       :space-evenly true
+    (label :class "timer-text ${pomodoro_mode == 'long_break' ? 'long-break' : (pomodoro_mode == 'break' ? 'short-break' : '')}" 
+           :text pomodoro_display)
+    (label :class "session-text"
+           :text {pomodoro_mode == "work" ? "Sesión: ${pomodoro_session} / 3" : 
+                  pomodoro_mode == "long_break" ? "Descanso Largo" : 
+                  "Descanso Corto"})
+    (box :orientation "h" 
+         :space-evenly true 
+         :class "controls"
+      (button :class "btn-toggle" 
+              :onclick "scripts/pomodoro.sh toggle"
+              {pomodoro_state == "running" ? "⏸" : "▶"})
+      (button :class "btn-reset" 
+              :onclick "scripts/pomodoro.sh reset" 
+              "⏹")
+    )
+  )
+)
+
+(defwidget clock_module []
+  (eventbox :onclick "eww open --toggle pomodoro_window"
+            :cursor "pointer"
+    (box :class "clock"
+         (label :text time_poll)
+    )
+  )
+)

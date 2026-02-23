@@ -1,0 +1,44 @@
+{
+  "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json",
+  "logo": {
+    "type": "kitty",   // Usa el protocolo de Kitty para mejor calidad
+    "source": "/home/enigma/.config/fastfetch/Fedora_logo.png", // <--- ¡CAMBIA ESTO!
+    "width": 30,       // Ajusta el ancho (en caracteres)
+    "height": 15,      // Ajusta el alto (opcional, si quieres forzarlo)
+    "padding": {
+      "top": 2,
+      "left": 2
+    }
+  },
+  "modules": [
+    "title",
+    "separator",
+    "os",
+    "host",
+    "kernel",
+    "uptime",
+    "packages",
+    "shell",
+    "display",
+    "de",
+    "wm",
+    "wmtheme",
+    "theme",
+    "icons",
+    "font",
+    "cursor",
+    "terminal",
+    "terminalfont",
+    "cpu",
+    "gpu",
+    "memory",
+    "swap",
+    "disk",
+    "localip",
+    "battery",
+    "poweradapter",
+    "locale",
+    "break",
+    "colors"
+  ]
+}

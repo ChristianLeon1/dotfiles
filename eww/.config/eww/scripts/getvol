@@ -1,0 +1,15 @@
+#!/bin/sh
+# 1. Comprobar si está muteado usando el comodín @DEFAULT_SINK@
+# Esto funciona aunque cambies de altavoces a audífonos
+mute_status=$(pactl get-sink-mute @DEFAULT_SINK@)
+
+# Verificamos si la salida contiene "yes" (inglés) o "sí" (español)
+if [[ "$mute_status" == *"yes"* ]] || [[ "$mute_status" == *"sí"* ]]; then
+  echo -1
+else
+  # 2. Obtener volumen limpio
+  # - head -n 1: Toma solo el canal izquierdo (para evitar duplicados)
+  # - grep -o "[0-9]*%": Busca números seguidos de un %
+  # - tr -d '%': Borra el símbolo de porcentaje
+  pactl get-sink-volume @DEFAULT_SINK@ | head -n 1 | grep -o "[0-9]*%" | head -n 1 | tr -d '%'
+fi

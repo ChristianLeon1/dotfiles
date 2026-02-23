@@ -1,0 +1,93 @@
+# ~/.config/yazi/theme.toml
+
+[mgr]
+# El directorio actual en la barra superior
+cwd = { fg = "#00f0ff", italic = true }
+
+# Elemento sobre el que estás posicionado (Cursor)
+# Fondo cian con texto oscuro para alto contraste (estilo neón)
+hovered = { fg = "#0b1221", bg = "#00f0ff", bold = true }
+preview_hovered = { underline = true }
+
+# Marcadores y selecciones
+find_keyword  = { fg = "#ffcb6b", italic = true }
+find_position = { fg = "#c792ea", bg = "reset", italic = true }
+marker_selected = { fg = "#c792ea", bg = "#c792ea" }
+marker_copied   = { fg = "#ffcb6b", bg = "#ffcb6b" }
+marker_cut      = { fg = "#ef5350", bg = "#ef5350" }
+
+[status]
+# Barra de estado inferior
+separator_open  = ""
+separator_close = ""
+separator_style = { fg = "#161b2d", bg = "#161b2d" }
+
+# Modos (Normal = Cian, Select = Violeta, Unset = Rojo)
+mode_normal = { fg = "#161b2d", bg = "#00f0ff", bold = true }
+mode_select = { fg = "#161b2d", bg = "#c792ea", bold = true }
+mode_unset  = { fg = "#161b2d", bg = "#ef5350", bold = true }
+
+progress_label  = { fg = "#ffffff", bold = true }
+progress_normal = { fg = "#00f0ff", bg = "#161b2d" }
+progress_error  = { fg = "#ef5350", bg = "#161b2d" }
+
+# Permisos y fecha
+permissions_t = { fg = "#00f0ff" }
+permissions_r = { fg = "#ffcb6b" }
+permissions_w = { fg = "#ef5350" }
+permissions_x = { fg = "#c792ea" }
+permissions_s = { fg = "#7f8c98" }
+
+[input]
+border   = { fg = "#00f0ff" }
+title    = { fg = "#00f0ff" }
+value    = { fg = "#ffffff" }
+selected = { bg = "#263e52" }
+
+[select]
+border   = { fg = "#c792ea" }
+active   = { fg = "#c792ea" }
+inactive = { fg = "#7f8c98" }
+
+[tasks]
+border  = { fg = "#00f0ff" }
+title   = { fg = "#00f0ff" }
+hovered = { underline = true }
+
+[which]
+cols = 3
+mask            = { bg = "#0b1221" }
+cand            = { fg = "#00f0ff" }
+rest            = { fg = "#7f8c98" }
+desc            = { fg = "#c792ea" }
+separator       = "  "
+separator_style = { fg = "#5f7e97" }
+
+# COLORES DE TIPOS DE ARCHIVO
+# Esto ayuda a que el explorador se sienta consistente con el tema
+# ~/.config/yazi/theme.toml
+
+[filetype]
+rules = [
+	# Imágenes
+	{ mime = "image/*", fg = "#c792ea" },
+
+	# Videos y Audio
+	{ mime = "{video,audio}/*", fg = "#ffcb6b" },
+
+	# Archivos comprimidos
+	{ mime = "application/{zip,rar,7z*,tar,gzip,xz}", fg = "#ef5350" },
+
+	# Documentos y código JSON/XML/PDF
+	{ mime = "application/{json,pdf,xml}", fg = "#00f0ff" },
+    
+    # --- CORRECCIÓN AQUÍ ---
+    # Directorios: Se usa mime "inode/directory", no "is = dir"
+	{ mime = "inode/directory", fg = "#00f0ff", bold = true },
+    
+    # Ejecutables (Esto sí es válido con 'is')
+	{ is = "exec", fg = "#80cbc4", bold = true }, 
+    
+    # Archivos por defecto (opcional, para que el resto sea blanco o gris)
+    { name = "*", fg = "#a6accd" }
+]

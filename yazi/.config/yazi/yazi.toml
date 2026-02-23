@@ -1,0 +1,9 @@
+# 1. Definimos los programas (Openers)
+[opener]
+edit = [
+    { run = 'nvim "$@"', block = true, desc = "Edit", for = "unix" }
+]
+open = [
+    { run = 'xdg-open "$@"', desc = "Open", orphan = true, for = "unix" }
+]
+
