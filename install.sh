@@ -99,7 +99,9 @@ flatpak install -y flathub com.spotify.Client
 
 # --------------------------- Instalando NerdFonts -------------------------------- 
 
-bash "$HOME/dotfiles/Fonts/install_nerdfonts.sh"
+bash "$HOME/dotfiles/Fonts/install_nerdfonts.sh" 
+curl -fsS https://dl.brave.com/install.sh | sh 
+
 # --------------------------- Configuración de SDDM ---------------------------------------  
 bash -c "$(curl -fsSL https://raw.githubusercontent.com/keyitdev/sddm-astronaut-theme/master/setup.sh)"
 
