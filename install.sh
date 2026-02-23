@@ -21,11 +21,11 @@ sudo dnf install -y https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-rel
                     https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
 echo "aaaaa"
 # Para Hyprland y herramientas relacionadas
-sudo dnf copr enable solopasha/hyprland 
+sudo dnf copr enable -y < /dev/null solopasha/hyprland 
 
 echo "aaaa1"
 # Para Yazi (terminal file manager)
-sudo dnf copr enable varlad/yazi
+sudo dnf copr enable -y < /dev/null varlad/yazi 
 
 
 echo "Instalando dependencias..."
