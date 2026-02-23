@@ -38,7 +38,7 @@ PAQUETES=(
     qt6-qtbase-devel qt6-qtsvg qt6-qtvirtualkeyboard qt6-qtmultimedia
     
     # Desarrollo GTK/Wayland
-    gtk3-devel gtk-layer-shell-devel pango-devel gdk-pixbuf2-devel cairo-devel glib2-devel
+    gtk3-devel gtk-layer-shell-devel pango-devel gdk-pixbuf2-devel cairo-devel glib2-devel libdbusmenu-glib-devel libdbusmenu-gtk3-devel
     
     # Entorno Hyprland
     hyprland hypridle hyprlock dunst fastfetch kitty yazi rofi-wayland
