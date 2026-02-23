@@ -45,13 +45,17 @@ PAQUETES=(
     grim slurp light pamixer ydotool sddm
     
     # Terminal y Extras
-    zsh neovim flatpak bluez
+    zsh neovim flatpak bluez tuned-ppd
     
     # Documentación (LaTeX) - TEN CUIDADO CON EL ESPACIO EN DISCO
     texlive-scheme-full latexmk zathura zathura-pdf-mupdf
 )
 
-sudo dnf install -y --allowerasing --skip-broken --skip-unavailable "${PAQUETES[@]}"
+sudo dnf install -y --allowerasing --skip-broken --skip-unavailable "${PAQUETES[@]}" 
+
+sudo systemctl daemon-reload
+sudo systemctl disable power-profiles-daemon.service 2>/dev/null || true
+sudo systemctl enable --now tuned.service
 
 sudo systemctl enable --now bluetooth.service
 sudo systemctl enable sddm.service
