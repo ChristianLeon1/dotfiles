@@ -58,8 +58,11 @@ sudo systemctl disable power-profiles-daemon.service 2>/dev/null || true
 sudo systemctl enable --now tuned.service
 
 sudo systemctl enable --now bluetooth.service
-sudo systemctl enable sddm.service
 
+echo "Configurando SDDM como gestor de inicio de sesión principal..."
+sudo systemctl disable gdm.service 2>/dev/null || true
+sudo systemctl enable --force sddm.service
+sudo dnf remove -y gdm 
 sudo pip3 install pywal
 
 # ---------------------------- Configuración de eww ---------------------------------------
