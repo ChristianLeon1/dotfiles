@@ -27,7 +27,31 @@ sudo dnf copr enable -y < /dev/null varlad/yazi
 
 
 echo "Instalando dependencias..."
-sudo dnf install -y --allowerasing --skip-broken --skip-unavailable git stow wget curl gcc gcc-c++ make cmake cargo rust python3-pip python3-devel qt6-qtbase-devel python3-gobject nodejs npm ripgrep fd-find wl-clipboard unzip python3-neovim texlive-scheme-full latexmk zathura zathura-pdf-mupdf hyprland hypridle hyprlock dunst fastfetch kitty neovim yazi zsh rofi-wayland gtk3-devel gtk-layer-shell-devel pango-devel gdk-pixbuf2-devel cairo-devel glib2-devel python3 bluez flatpak grim slurp light pamixer ydotool sddm qt6-qtsvg qt6-qtvirtualkeyboard qt6-qtmultimedia 
+
+PAQUETES=(
+    # Herramientas Base y Compilación
+    git stow wget curl gcc gcc-c++ make cmake cargo rust 
+    nodejs npm ripgrep fd-find unzip wl-clipboard
+    
+    # Python y Qt (Desarrollo)
+    python3 python3-pip python3-devel python3-gobject python3-neovim
+    qt6-qtbase-devel qt6-qtsvg qt6-qtvirtualkeyboard qt6-qtmultimedia
+    
+    # Desarrollo GTK/Wayland
+    gtk3-devel gtk-layer-shell-devel pango-devel gdk-pixbuf2-devel cairo-devel glib2-devel
+    
+    # Entorno Hyprland
+    hyprland hypridle hyprlock dunst fastfetch kitty yazi rofi-wayland
+    grim slurp light pamixer ydotool sddm
+    
+    # Terminal y Extras
+    zsh neovim flatpak bluez
+    
+    # Documentación (LaTeX) - TEN CUIDADO CON EL ESPACIO EN DISCO
+    texlive-scheme-full latexmk zathura zathura-pdf-mupdf
+)
+
+sudo dnf install -y --allowerasing --skip-broken --skip-unavailable "${PAQUETES[@]}"
 
 sudo systemctl enable --now power-profiles-daemon.service
 sudo systemctl enable --now bluetooth.service
