@@ -55,7 +55,6 @@ sudo dnf install -y --allowerasing --skip-broken --skip-unavailable "${PAQUETES[
 
 sudo systemctl enable --now power-profiles-daemon.service
 sudo systemctl enable --now bluetooth.service
-sudo systemctl enable sddm.service
 
 sudo pip3 install pywal
 
