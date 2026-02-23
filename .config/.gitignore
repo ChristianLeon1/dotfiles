@@ -1,4 +1,3 @@
-# --- Seguridad y Credenciales (CRÍTICO) ---
 .ssh/
 .gnupg/
 *.pem
@@ -10,7 +9,6 @@
 .python_history
 .node_repl_history
 
-# --- Archivos de Sistema y Temporales ---
 .DS_Store
 Thumbs.db
 *~
@@ -19,7 +17,6 @@ Thumbs.db
 .cache/
 .dbus/
 
-# --- Python (Proyectos PySide6) ---
 __pycache__/
 *$py.class
 .venv/
@@ -28,7 +25,6 @@ ENV/
 .env
 .pytest_cache/
 
-# --- Compilación (C++ / Rust) ---
 build/
 target/
 *.o
@@ -38,14 +34,11 @@ target/
 cmake-build-*/
 .cargo/
 
-# --- Datos de Aplicaciones Específicas ---
-# Evita subir sesiones de navegador o datos pesados
 .config/google-chrome/
 .config/discord/
 .config/slack/
 .vscode/
 
-# --- Backups de Fedora / DNF ---
 *.old
 *.bak
 *.rpmnew
