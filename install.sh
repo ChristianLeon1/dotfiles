@@ -62,8 +62,6 @@ sudo systemctl enable --now bluetooth.service
 echo "Configurando SDDM como gestor de inicio de sesión principal..."
 sudo systemctl disable gdm.service 2>/dev/null || true
 sudo systemctl enable --force sddm.service
-sudo dnf remove -y gdm 
-echo "listo"
 sudo pip3 install pywal
 
 # ---------------------------- Configuración de eww ---------------------------------------
