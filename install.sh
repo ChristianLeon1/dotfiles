@@ -109,7 +109,9 @@ REPO_URL="https://github.com/ChristianLeon1/dotfiles.git"
 
 echo "Descargando dotfiles..."
 
-smart_clone "$REPO_URL" "$DOTFILES_DIR"
+smart_clone "$REPO_URL" "$DOTFILES_DIR" 
+
+cd "$DOTFILES_DIR" && git pull origin main && cd .. 
 
 echo "Desplegando configuraciones con Stow..."
 DOTFILES_DIR="$HOME/dotfiles"
