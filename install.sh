@@ -1,8 +1,19 @@
 #!/bin/bash
 
-# Script de instalación para Hyprland y herramientas relacionadas en Fedora
-
 set -e
+
+smart_clone() {
+    local REPO_URL=$1
+    # Si no das un nombre de carpeta, extrae el nombre del repo de la URL
+    local REPO_DIR=${2:-$(basename "$REPO_URL" .git)}
+
+    if [ -d "$REPO_DIR" ]; then
+        echo "--> [Aviso]: La carpeta '$REPO_DIR' ya existe. Saltando clonado."
+    else
+        echo "--> [Info]: Clonando en '$REPO_DIR' con --depth=1..."
+        git clone --depth=1 "$REPO_URL" "$REPO_DIR"
+    fi
+}
 
 echo "░█▀▄░▀█▀░█▀▀░█▀█░█░█░█▀▀░█▀█░▀█▀░█▀▄░█▀█░░░█▀▀░█▀█░▀█▀░█▀▀░█▄█░█▀█"
 echo "░█▀▄░░█░░█▀▀░█░█░▀▄▀░█▀▀░█░█░░█░░█░█░█░█░░░█▀▀░█░█░░█░░█░█░█░█░█▀█"
@@ -43,7 +54,6 @@ PAQUETES=(
     # Entorno Hyprland
     hyprland hypridle hyprlock dunst fastfetch kitty yazi rofi-wayland eww-git
     grim slurp light pamixer ydotool sddm luarocks ImageMagick ImageMagick-devel
-    
     # Terminal y Extras
     zsh neovim flatpak bluez tuned-ppd
     
@@ -69,9 +79,9 @@ sudo pip3 install pywal
 # ---------------------------- Configuración de Oh My Zsh --------------------------------------- 
 echo "Configurando Oh My Zsh..." 
 
-git clone https://github.com/zsh-users/zsh-syntax-highlighting.git
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" 
-git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/powerlevel10k
+smart_clone https://github.com/zsh-users/zsh-syntax-highlighting.git 
+smart_clone https://github.com/romkatv/powerlevel10k.git ~/powerlevel10k
+
 echo "Configurando Oh My Zsh..."
 if [ ! -d "$HOME/.oh-my-zsh" ]; then
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
