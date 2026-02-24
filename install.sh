@@ -66,21 +66,22 @@ sudo pip3 install pywal
 
 # ---------------------------- Configuración de eww ---------------------------------------
 
-echo "Compilando eww en el disco duro..."
+echo "Compilando eww (redirigiendo todo al disco duro)..."
 if ! command -v eww &> /dev/null; then
-    # Creamos una carpeta temporal en tu disco real
+    # Creamos carpetas en tu disco real para aislar el proceso
     mkdir -p "$HOME/.cargo_build_target"
+    mkdir -p "$HOME/.rustc_tmp"
     
-    # Le indicamos a cargo que use esta carpeta para los archivos pesados
-    CARGO_TARGET_DIR="$HOME/.cargo_build_target" cargo install --locked --git https://github.com/elkowar/eww --no-default-features --features wayland eww
+    # TMPDIR redirige a rustc, CARGO_TARGET_DIR redirige a cargo
+    TMPDIR="$HOME/.rustc_tmp" CARGO_TARGET_DIR="$HOME/.cargo_build_target" cargo install --locked --git https://github.com/elkowar/eww --no-default-features --features wayland eww
     
     export PATH="$HOME/.cargo/bin:$PATH"
     
-    # Limpiamos la carpeta temporal para liberar tu espacio en disco
-    rm -rf "$HOME/.cargo_build_target"
+    # Limpieza profunda al terminar
+    rm -rf "$HOME/.cargo_build_target" "$HOME/.rustc_tmp"
 else
     echo "eww ya se encuentra instalado."
-fi
+fi 
 
 echo "Configurando Oh My Zsh..."
 if [ ! -d "$HOME/.oh-my-zsh" ]; then
