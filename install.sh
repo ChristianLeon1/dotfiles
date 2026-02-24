@@ -68,7 +68,7 @@ sudo pip3 install pywal
 
 echo "Compilando eww..."
 if ! command -v eww &> /dev/null; then
-    cargo install --git https://github.com/elkowar/eww --no-default-features --features --locked wayland eww
+    cargo install --locked --git https://github.com/elkowar/eww --no-default-features --features wayland eww
     export PATH="$HOME/.cargo/bin:$PATH"
 else
     echo "eww ya se encuentra instalado."
