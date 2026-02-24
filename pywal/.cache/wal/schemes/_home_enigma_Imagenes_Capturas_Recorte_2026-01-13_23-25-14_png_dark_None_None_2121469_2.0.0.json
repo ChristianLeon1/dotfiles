@@ -1,0 +1,28 @@
+{
+    "checksum": "0fba1b06c17d02a7e41148d2241e5df2",
+    "wallpaper": "/home/enigma/Imagenes/Capturas/Recorte_2026-01-13_23-25-14.png",
+    "alpha": "100",
+    "special": {
+        "background": "#0c101b",
+        "foreground": "#c2c3c6",
+        "cursor": "#c2c3c6"
+    },
+    "colors": {
+        "color0": "#0c101b",
+        "color1": "#17326C",
+        "color2": "#213B76",
+        "color3": "#234476",
+        "color4": "#1E3E82",
+        "color5": "#1F4789",
+        "color6": "#25498D",
+        "color7": "#c2c3c6",
+        "color8": "#5b5f6f",
+        "color9": "#17326C",
+        "color10": "#213B76",
+        "color11": "#234476",
+        "color12": "#1E3E82",
+        "color13": "#1F4789",
+        "color14": "#25498D",
+        "color15": "#c2c3c6"
+    }
+}

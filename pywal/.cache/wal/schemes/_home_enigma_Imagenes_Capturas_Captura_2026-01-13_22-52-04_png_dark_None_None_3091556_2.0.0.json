@@ -1,0 +1,28 @@
+{
+    "checksum": "bf365bbde1a7d4dca0132ab12657daa1",
+    "wallpaper": "/home/enigma/Imagenes/Capturas/Captura_2026-01-13_22-52-04.png",
+    "alpha": "100",
+    "special": {
+        "background": "#081013",
+        "foreground": "#c1c3c4",
+        "cursor": "#c1c3c4"
+    },
+    "colors": {
+        "color0": "#081013",
+        "color1": "#183348",
+        "color2": "#1B3859",
+        "color3": "#254655",
+        "color4": "#1F5165",
+        "color5": "#566369",
+        "color6": "#9E8666",
+        "color7": "#c1c3c4",
+        "color8": "#57656b",
+        "color9": "#183348",
+        "color10": "#1B3859",
+        "color11": "#254655",
+        "color12": "#1F5165",
+        "color13": "#566369",
+        "color14": "#9E8666",
+        "color15": "#c1c3c4"
+    }
+}

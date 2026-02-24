@@ -1,0 +1,21 @@
+set $wallpaper /home/enigma/Documentos/WallPapers/fondo.png
+
+set $background #0a1017
+set $foreground #c1c3c5
+
+set $color0 #0a1017
+set $color1 #6D6B6D
+set $color2 #44718A
+set $color3 #837E83
+set $color4 #4C9CBE
+set $color5 #959396
+set $color6 #9EA5AE
+set $color7 #c1c3c5
+set $color8 #59626d
+set $color9 #6D6B6D
+set $color10 #44718A
+set $color11 #837E83
+set $color12 #4C9CBE
+set $color13 #959396
+set $color14 #9EA5AE
+set $color15 #c1c3c5

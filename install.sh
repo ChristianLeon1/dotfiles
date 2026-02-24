@@ -79,14 +79,21 @@ sudo pip3 install pywal
 # ---------------------------- Configuración de Oh My Zsh --------------------------------------- 
 echo "Configurando Oh My Zsh..." 
 
-smart_clone https://github.com/zsh-users/zsh-syntax-highlighting.git 
-smart_clone https://github.com/romkatv/powerlevel10k.git ~/powerlevel10k
+ZSH_PLUGINS_DIR="${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins"
 
-echo "Configurando Oh My Zsh..."
 if [ ! -d "$HOME/.oh-my-zsh" ]; then
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
 fi
-sudo chsh -s $(which zsh) $(whoami) 
+sudo chsh -s $(which zsh) $(whoami)  
+
+if [ ! -d "$ZSH_PLUGINS_DIR/zsh-syntax-highlighting" ]; then
+    git clone https://github.com/zsh-users/zsh-syntax-highlighting.git "$ZSH_PLUGINS_DIR/zsh-syntax-highlighting"
+fi
+
+if [ ! -d "$ZSH_PLUGINS_DIR/zsh-autosuggestions" ]; then
+    git clone https://github.com/zsh-users/zsh-autosuggestions.git "$ZSH_PLUGINS_DIR/zsh-autosuggestions"
+fi
+
 
 # -------------- Configuración de networkmanager-dmenu y rofi-bluetooth ------------------
 
@@ -101,13 +108,8 @@ DOTFILES_DIR="$HOME/dotfiles"
 REPO_URL="https://github.com/ChristianLeon1/dotfiles.git"
 
 echo "Descargando dotfiles..."
-if [ ! -d "$DOTFILES_DIR" ]; then
-    git clone "$REPO_URL" "$DOTFILES_DIR"
-else
-    cd "$DOTFILES_DIR"
-    git pull origin main
-fi 
 
+smart_clone "$REPO_URL" "$DOTFILES_DIR"
 
 echo "Desplegando configuraciones con Stow..."
 DOTFILES_DIR="$HOME/dotfiles"

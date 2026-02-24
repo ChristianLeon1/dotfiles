@@ -1,0 +1,23 @@
+" Special
+let wallpaper  = "/home/enigma/Documentos/WallPapers/fondo.png"
+let background = "#0a1017"
+let foreground = "#c1c3c5"
+let cursor     = "#c1c3c5"
+
+" Colors
+let color0  = "#0a1017"
+let color1  = "#6D6B6D"
+let color2  = "#44718A"
+let color3  = "#837E83"
+let color4  = "#4C9CBE"
+let color5  = "#959396"
+let color6  = "#9EA5AE"
+let color7  = "#c1c3c5"
+let color8  = "#59626d"
+let color9  = "#6D6B6D"
+let color10 = "#44718A"
+let color11 = "#837E83"
+let color12 = "#4C9CBE"
+let color13 = "#959396"
+let color14 = "#9EA5AE"
+let color15 = "#c1c3c5"

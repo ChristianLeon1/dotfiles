@@ -1,0 +1,28 @@
+{
+    "checksum": "864d9b83f2fb6877ea7b47879c3a70fa",
+    "wallpaper": "/home/enigma/Documentos/WallPapers/fondo.png",
+    "alpha": "100",
+    "special": {
+        "background": "#0a1017",
+        "foreground": "#c1c3c5",
+        "cursor": "#c1c3c5"
+    },
+    "colors": {
+        "color0": "#0a1017",
+        "color1": "#6D6B6D",
+        "color2": "#44718A",
+        "color3": "#837E83",
+        "color4": "#4C9CBE",
+        "color5": "#959396",
+        "color6": "#9EA5AE",
+        "color7": "#c1c3c5",
+        "color8": "#59626d",
+        "color9": "#6D6B6D",
+        "color10": "#44718A",
+        "color11": "#837E83",
+        "color12": "#4C9CBE",
+        "color13": "#959396",
+        "color14": "#9EA5AE",
+        "color15": "#c1c3c5"
+    }
+}
