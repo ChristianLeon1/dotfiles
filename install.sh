@@ -66,13 +66,15 @@ sudo pip3 install pywal
 
 # ---------------------------- Configuración de eww ---------------------------------------
 
-echo "Compilando eww..."
+echo "Instalando eww (binario precompilado)..."
 if ! command -v eww &> /dev/null; then
-    cargo install --locked --git https://github.com/elkowar/eww --no-default-features --features wayland eww
-    export PATH="$HOME/.cargo/bin:$PATH"
+    wget https://github.com/elkowar/eww/releases/latest/download/eww-wayland -O eww
+    chmod +x eww
+    sudo mv eww /usr/local/bin/eww
+    echo "eww instalado correctamente."
 else
     echo "eww ya se encuentra instalado."
-fi
+fi 
 
 echo "Configurando Oh My Zsh..."
 if [ ! -d "$HOME/.oh-my-zsh" ]; then
