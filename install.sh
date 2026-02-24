@@ -113,6 +113,7 @@ done
 cp -r "$DOTFILES_DIR/WallPapers" "$Home/Documentos/"
 
 # --------------------------- Configuración de Flathub y Spotify -------------------------
+
 echo "Configurando Flathub e instalando Spotify..."
 sudo dnf install -y flatpak
 flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
