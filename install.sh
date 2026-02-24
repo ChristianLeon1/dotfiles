@@ -66,15 +66,21 @@ sudo pip3 install pywal
 
 # ---------------------------- Configuración de eww ---------------------------------------
 
-echo "Instalando eww (binario precompilado)..."
+echo "Compilando eww en el disco duro..."
 if ! command -v eww &> /dev/null; then
-    wget https://github.com/elkowar/eww/releases/latest/download/eww-wayland -O eww
-    chmod +x eww
-    sudo mv eww /usr/local/bin/eww
-    echo "eww instalado correctamente."
+    # Creamos una carpeta temporal en tu disco real
+    mkdir -p "$HOME/.cargo_build_target"
+    
+    # Le indicamos a cargo que use esta carpeta para los archivos pesados
+    CARGO_TARGET_DIR="$HOME/.cargo_build_target" cargo install --locked --git https://github.com/elkowar/eww --no-default-features --features wayland eww
+    
+    export PATH="$HOME/.cargo/bin:$PATH"
+    
+    # Limpiamos la carpeta temporal para liberar tu espacio en disco
+    rm -rf "$HOME/.cargo_build_target"
 else
     echo "eww ya se encuentra instalado."
-fi 
+fi
 
 echo "Configurando Oh My Zsh..."
 if [ ! -d "$HOME/.oh-my-zsh" ]; then
