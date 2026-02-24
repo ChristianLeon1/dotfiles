@@ -42,7 +42,7 @@ PAQUETES=(
     
     # Entorno Hyprland
     hyprland hypridle hyprlock dunst fastfetch kitty yazi rofi-wayland eww-git
-    grim slurp light pamixer ydotool sddm
+    grim slurp light pamixer ydotool sddm luarocks ImageMagick ImageMagick-devel
     
     # Terminal y Extras
     zsh neovim flatpak bluez tuned-ppd
