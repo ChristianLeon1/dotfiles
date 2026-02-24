@@ -110,7 +110,7 @@ for carpeta in "${carpetas[@]}"; do
     fi
 done 
 
-cp -r "$DOTFILES_DIR/WallPapers" "$Home/Documentos/"
+cp -r "$DOTFILES_DIR/WallPapers" "$HOME/Documentos/"
 
 # --------------------------- Configuración de Flathub y Spotify -------------------------
 
