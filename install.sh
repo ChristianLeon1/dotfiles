@@ -109,9 +109,11 @@ REPO_URL="https://github.com/ChristianLeon1/dotfiles.git"
 
 echo "Descargando dotfiles..."
 
-smart_clone "$REPO_URL" "$DOTFILES_DIR" 
-
-cd "$DOTFILES_DIR" && git pull origin main && cd .. 
+if [ -d "$DOTFILES_DIR" ]; then
+    echo "--> [Aviso]: La carpeta '$DOTFILES_DIR' ya existe. Eliminando." 
+    rm -rf "$DOTFILES_DIR"
+fi
+git clone --depth=1 "$REPO_URL" "$DOTFILES_DIR" 
 
 echo "Desplegando configuraciones con Stow..."
 DOTFILES_DIR="$HOME/dotfiles"
