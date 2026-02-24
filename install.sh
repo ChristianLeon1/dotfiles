@@ -66,6 +66,12 @@ sudo pip3 install pywal
 
 # ---------------------------- Configuración de eww ---------------------------------------
 
+# ---------------------------- Configuración de Oh My Zsh --------------------------------------- 
+echo "Configurando Oh My Zsh..." 
+
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" 
+git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/powerlevel10k
 echo "Configurando Oh My Zsh..."
 if [ ! -d "$HOME/.oh-my-zsh" ]; then
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
