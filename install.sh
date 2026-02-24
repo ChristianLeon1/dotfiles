@@ -129,6 +129,7 @@ for carpeta in "${carpetas[@]}"; do
 done 
 
 cp -r "$DOTFILES_DIR/WallPapers" "$HOME/Documentos/"
+cp -r "$DOTFILES_DIR/pywal/wal" "$HOME/.cache/wal/"
 
 # --------------------------- Configuración de Flathub y Spotify -------------------------
 
