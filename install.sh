@@ -38,10 +38,10 @@ PAQUETES=(
     qt6-qtbase-devel qt6-qtsvg qt6-qtvirtualkeyboard qt6-qtmultimedia
     
     # Desarrollo GTK/Wayland
-    gtk3-devel gtk-layer-shell-devel pango-devel gdk-pixbuf2-devel cairo-devel glib2-devel libdbusmenu-glib-devel libdbusmenu-gtk3-devel
+    gtk3-devel gtk-layer-shell-devel pango-devel gdk-pixbuf2-devel cairo-devel glib2-devel libdbusmenu-glib-devel libdbusmenu-gtk3-devel 
     
     # Entorno Hyprland
-    hyprland hypridle hyprlock dunst fastfetch kitty yazi rofi-wayland
+    hyprland hypridle hyprlock dunst fastfetch kitty yazi rofi-wayland eww-git
     grim slurp light pamixer ydotool sddm
     
     # Terminal y Extras
@@ -65,23 +65,6 @@ sudo systemctl enable --force sddm.service
 sudo pip3 install pywal
 
 # ---------------------------- Configuración de eww ---------------------------------------
-
-echo "Compilando eww (redirigiendo todo al disco duro)..."
-if ! command -v eww &> /dev/null; then
-    # Creamos carpetas en tu disco real para aislar el proceso
-    mkdir -p "$HOME/.cargo_build_target"
-    mkdir -p "$HOME/.rustc_tmp"
-    
-    # TMPDIR redirige a rustc, CARGO_TARGET_DIR redirige a cargo
-    TMPDIR="$HOME/.rustc_tmp" CARGO_TARGET_DIR="$HOME/.cargo_build_target" cargo install --locked --git https://github.com/elkowar/eww --no-default-features --features wayland eww
-    
-    export PATH="$HOME/.cargo/bin:$PATH"
-    
-    # Limpieza profunda al terminar
-    rm -rf "$HOME/.cargo_build_target" "$HOME/.rustc_tmp"
-else
-    echo "eww ya se encuentra instalado."
-fi 
 
 echo "Configurando Oh My Zsh..."
 if [ ! -d "$HOME/.oh-my-zsh" ]; then
