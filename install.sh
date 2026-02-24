@@ -74,8 +74,6 @@ sudo systemctl disable gdm.service 2>/dev/null || true
 sudo systemctl enable --force sddm.service
 sudo pip3 install pywal
 
-# ---------------------------- Configuración de eww ---------------------------------------
-
 # ---------------------------- Configuración de Oh My Zsh --------------------------------------- 
 echo "Configurando Oh My Zsh..." 
 
@@ -129,7 +127,9 @@ cp -r "$DOTFILES_DIR/WallPapers" "$HOME/Documentos/"
 
 # -------------- Configuración de networkmanager-dmenu y rofi-bluetooth ------------------
 
-sudo mv "$DOTFILES_DIR/network_bt/networkmanager-dmenu" /usr/bin/
+chmod +x "$DOTFILES_DIR/network_bt/networkmanager_dmenu" 
+chmod +x "$DOTFILES_DIR/network_bt/rofi-bluetooth"
+sudo mv "$DOTFILES_DIR/network_bt/networkmanager_dmenu" /usr/bin/
 sudo mv "$DOTFILES_DIR/network_bt/rofi-bluetooth" /usr/bin/
 
 # --------------------------- Configuración de Flathub y Spotify -------------------------
