@@ -48,7 +48,7 @@ PAQUETES=(
     zsh neovim flatpak bluez tuned-ppd
     
     # Documentación (LaTeX) - TEN CUIDADO CON EL ESPACIO EN DISCO
-    texlive-scheme-full latexmk zathura zathura-pdf-mupdf
+    texlive-scheme-full latexmk zathura zathura-pdf-mupdf readline-devel
 )
 
 sudo dnf install -y --allowerasing --skip-broken --skip-unavailable "${PAQUETES[@]}" 
