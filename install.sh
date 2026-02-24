@@ -97,10 +97,8 @@ fi
 
 # -------------- Configuración de networkmanager-dmenu y rofi-bluetooth ------------------
 
-wget https://raw.githubusercontent.com/firecat53/networkmanager-dmenu/main/networkmanager_dmenu -O "usr/bin/unetworkmanager_dmenu"
-chmod +x "usr/bin/networkmanager_dmenu"
-wget https://raw.githubusercontent.com/nickclyde/rofi-bluetooth/master/rofi-bluetooth -O "/usr/bin/rofi-bluetooth"
-chmod +x "/usr/bin/rofi-bluetooth"
+sudo mv "$(which networkmanager-dmenu)" /usr/local/bin/networkmanager-dmenu
+sudo mv "$(which rofi-bluetooth)" /usr/local/bin/rofi-bluetooth
 
 # --------------------------- Configuración de dotfiles con Stow -------------------------
 
