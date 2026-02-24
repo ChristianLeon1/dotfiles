@@ -5,8 +5,8 @@ launch_eww() {
     
     sleep 0.3
     
-    eww-wayland daemon
-    eww-wayland open topbar
+    eww daemon
+    eww open topbar
 
     MONITOR_COUNT=$(hyprctl monitors -j | jq length)
 
@@ -14,14 +14,14 @@ launch_eww() {
       sed -i '/:monitor 0/c\:monitor 1' ~/.config/eww/eww_sidebar.yuck 
         # Si hay 2 o más, abrimos la barra secundaria
         echo "Múltiples monitores detectados ($MONITOR_COUNT). Abriendo barra secundaria..."
-        eww-wayland open topbar_sec
+        eww open topbar_sec
       else 
         echo "Solo un monitor detectado. Cerrando barra secundaria si está abierta..."
         sed -i '/:monitor 1/c\:monitor 0' ~/.config/eww/eww_sidebar.yuck  
         sleep 0.2
     fi
 
-    eww-wayland open sidebar 
+    eww open sidebar 
 }
 
 launch_eww
