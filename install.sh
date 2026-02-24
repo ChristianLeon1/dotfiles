@@ -95,11 +95,6 @@ if [ ! -d "$ZSH_PLUGINS_DIR/zsh-autosuggestions" ]; then
 fi
 
 
-# -------------- Configuración de networkmanager-dmenu y rofi-bluetooth ------------------
-
-sudo mv "$(which networkmanager-dmenu)" /usr/local/bin/networkmanager-dmenu
-sudo mv "$(which rofi-bluetooth)" /usr/local/bin/rofi-bluetooth
-
 # --------------------------- Configuración de dotfiles con Stow -------------------------
 
 DOTFILES_DIR="$HOME/dotfiles"
@@ -131,6 +126,11 @@ for carpeta in "${carpetas[@]}"; do
 done 
 
 cp -r "$DOTFILES_DIR/WallPapers" "$HOME/Documentos/"
+
+# -------------- Configuración de networkmanager-dmenu y rofi-bluetooth ------------------
+
+sudo mv "$DOTFILES_DIR/network_bt/networkmanager-dmenu" /usr/bin/
+sudo mv "$DOTFILES_DIR/network_bt/rofi-bluetooth" /usr/bin/
 
 # --------------------------- Configuración de Flathub y Spotify -------------------------
 
